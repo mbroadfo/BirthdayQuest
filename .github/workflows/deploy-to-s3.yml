@@ -26,4 +26,4 @@ jobs:
         BUCKET_NAME=susan-birthday-quest-uniqueid
 
         echo "Uploading index.html to s3://$BUCKET_NAME/index.html"
-        aws s3 cp html/index.html s3://$BUCKET_NAME/index.html --acl public-read --content-type text/html
+        aws s3 cp html/index.html s3://$BUCKET_NAME/index.html --content-type text/html
