@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Birthday Quest Portal</title>
+    <style>
+        body { font-family: Georgia, serif; text-align: center; padding: 50px; background-color: #f9f6f1; }
+        input { margin: 10px; padding: 8px; width: 200px; font-size: 16px; }
+        button { padding: 10px 20px; font-size: 16px; }
+        .message { margin-top: 30px; font-size: 18px; color: darkgreen; }
+    </style>
+</head>
+<body>
+    <h1>Birthday Quest Portal</h1>
+    <p>Enter your Words of Power in order:</p>
+
+    <input type="text" id="word1" placeholder="Word 1">
+    <input type="text" id="word2" placeholder="Word 2">
+    <input type="text" id="word3" placeholder="Word 3">
+    <input type="text" id="word4" placeholder="Word 4"><br><br>
+
+    <button onclick="checkWords()">Submit</button>
+
+    <div class="message" id="message"></div>
+
+    <script>
+        function checkWords() {
+            const w1 = document.getElementById('word1').value.trim().toLowerCase();
+            const w2 = document.getElementById('word2').value.trim().toLowerCase();
+            const w3 = document.getElementById('word3').value.trim().toLowerCase();
+            const w4 = document.getElementById('word4').value.trim().toLowerCase();
+
+            if (w1 === "inspiration" && w2 === "brings" && w3 === "dough" && w4 === "joy") {
+                document.getElementById('message').innerHTML = `
+                    <h2>🎉 Happy 30th Birthday Susan 🎉</h2>
+                    <p>Your inspiration brings joy to all you meet — and a little dough never hurts.</p>
+                    <p>You have been an inspiration to me, and I hope this $5,000 gift takes one less burden from your shoulders.</p>
+                    <p>Love, Dad</p>
+                `;
+            } else {
+                document.getElementById('message').innerText = "Not quite yet... keep going!";
+            }
+        }
+    </script>
+</body>
+</html>

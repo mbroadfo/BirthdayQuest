@@ -1,0 +1,12 @@
+﻿# Terraform
+.terraform/
+terraform.tfstate
+terraform.tfstate.backup
+*.tfvars
+
+# Node/npm (if used later)
+node_modules/
+
+# General
+*.log
+.DS_Store
