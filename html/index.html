@@ -49,38 +49,30 @@
             margin-left: auto;
             margin-right: auto;
             opacity: 0;
-            transition: opacity 2s ease-in;
+            transition: opacity 1s ease-in;
         }
 
         #result.show {
             opacity: 1;
         }
 
-        #result h2 {
-            font-size: 1.8em;
-            margin-bottom: 0.5em;
-            position: relative;
-            display: inline-block;
-            background: linear-gradient(90deg, #ffcc00, #ffffff, #ffcc00);
-            background-size: 200% auto;
-            color: #004400;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shimmer 3s infinite;
-        }
-
-        @keyframes shimmer {
-            0% {
-                background-position: 200% center;
-            }
-            100% {
-                background-position: -200% center;
-            }
-        }
-
-        #result p {
+        #finalMessage {
+            margin-top: 2em;
             font-size: 1.2em;
-            margin-bottom: 1em;
+            color: #004400;
+            line-height: 1.6em;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            white-space: pre-wrap; /* important for typewriter spacing */
+            border-right: 3px solid #004400; /* blinking cursor */
+            animation: blink-cursor 0.7s steps(40) infinite normal;
+            opacity: 1;
+        }
+
+        @keyframes blink-cursor {
+            from { border-right-color: #004400; }
+            to { border-right-color: transparent; }
         }
     </style>
 </head>
@@ -99,6 +91,7 @@
     <button onclick="checkCombination()">Submit</button>
 
     <div id="result"></div>
+    <div id="finalMessage"></div>
 
     <script>
         function checkCombination() {
@@ -107,29 +100,73 @@
             const word3 = document.getElementById('word3').value.trim().toLowerCase();
 
             const resultDiv = document.getElementById('result');
-            resultDiv.classList.remove('show'); // Reset animation
-            resultDiv.innerHTML = ''; // Clear previous content
+            const finalMessageDiv = document.getElementById('finalMessage');
+
+            resultDiv.classList.remove('show');
+            finalMessageDiv.innerHTML = '';
+            finalMessageDiv.style.borderRight = 'none'; // reset cursor until active
+
+            resultDiv.innerHTML = '';
 
             if (word1 === "inspiration" && word2 === "stories" && word3 === "happy") {
-                // Small delay before showing the success message
+                // Show Portal unlocked message with button
                 setTimeout(() => {
                     resultDiv.innerHTML = `
-                        <h2>✨ The Portal Opens ✨</h2>
-                        <p>Your Words of Power have been found:</p>
-                        <p><strong>Inspiration • Stories • Happy</strong></p>
-                        <p>May they continue to guide and delight you.</p>
-                        <h2>🎉 Happy 30th Birthday Susan 🎉</h2>
-                        <p>Your inspiration brings joy to all you meet — and as any good story (or life) reminds us, a little dough never hurts.</p>
-                        <p>To celebrate your 30th, I’m giving you a <strong>$5,000 gift</strong> — an investment in your future and your passions.</p>
-                        <p>We’ll talk when we’re together at the end of June, but know this: it is yours, and I am so proud of you.</p>
-                        <p>With all my love,<br>Dad</p>
+                        <h2>✨ The Portal is Unlocked ✨</h2>
+                        <p>You may now open the Portal.</p>
+                        <button onclick="openPortal()">Open the Portal</button>
                     `;
                     resultDiv.classList.add('show');
-                }, 1000); // 1 second delay
+                }, 500);
             } else {
                 resultDiv.innerHTML = `<p>Hmm... not quite. Reflect and try again.</p>`;
                 resultDiv.classList.add('show');
             }
+        }
+
+        function openPortal() {
+            const resultDiv = document.getElementById('result');
+            const finalMessageDiv = document.getElementById('finalMessage');
+
+            // Hide the intermediate message
+            resultDiv.classList.remove('show');
+            setTimeout(() => {
+                resultDiv.innerHTML = '';
+
+                // Now type out the full message
+                const message = `
+🎉 Happy 30th Birthday Susan 🎉
+
+Your inspiration brings joy to all you meet — and as any good story (or life) reminds us, a little dough never hurts.
+
+To celebrate your 30th, I’m giving you a $5,000 gift — an investment in your future and your passions.
+
+We’ll talk when we’re together at the end of June, but know this: it is yours, and I am so proud of you.
+
+With all my love,
+Dad
+                `;
+
+                typeWriterEffect(finalMessageDiv, message, 40);
+            }, 500);
+        }
+
+        function typeWriterEffect(element, text, speed) {
+            let i = 0;
+            element.innerHTML = '';
+            element.style.borderRight = '3px solid #004400'; // show cursor
+
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                } else {
+                    element.style.borderRight = 'none'; // remove cursor at end
+                }
+            }
+
+            type();
         }
     </script>
 
