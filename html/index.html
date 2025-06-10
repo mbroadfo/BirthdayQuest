@@ -59,13 +59,29 @@
         #result h2 {
             font-size: 1.8em;
             margin-bottom: 0.5em;
+            position: relative;
+            display: inline-block;
+            background: linear-gradient(90deg, #ffcc00, #ffffff, #ffcc00);
+            background-size: 200% auto;
+            color: #004400;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: 200% center;
+            }
+            100% {
+                background-position: -200% center;
+            }
         }
 
         #result p {
             font-size: 1.2em;
             margin-bottom: 1em;
         }
-
     </style>
 </head>
 <body>
@@ -92,26 +108,27 @@
 
             const resultDiv = document.getElementById('result');
             resultDiv.classList.remove('show'); // Reset animation
+            resultDiv.innerHTML = ''; // Clear previous content
 
             if (word1 === "inspiration" && word2 === "stories" && word3 === "happy") {
-                resultDiv.innerHTML = `
-                    <h2>✨ The Portal Opens ✨</h2>
-                    <p>Your Words of Power have been found:</p>
-                    <p><strong>Inspiration • Stories • Happy</strong></p>
-                    <p>May they continue to guide and delight you.</p>
-                    <h2>🎉 Happy 30th Birthday Susan 🎉</h2>
-                    <p>Your inspiration brings joy to all you meet — and as any good story (or life) reminds us, a little dough never hurts.</p>
-                    <p>To celebrate your 30th, I’m giving you a <strong>$5,000 gift</strong> — an investment in your future and your passions.</p>
-                    <p>We’ll talk when we’re together at the end of June, but know this: it is yours, and I am so proud of you.</p>
-                    <p>With all my love,<br>Dad</p>
-                `;
-                // Trigger fade-in after small delay to allow DOM update
+                // Small delay before showing the success message
                 setTimeout(() => {
+                    resultDiv.innerHTML = `
+                        <h2>✨ The Portal Opens ✨</h2>
+                        <p>Your Words of Power have been found:</p>
+                        <p><strong>Inspiration • Stories • Happy</strong></p>
+                        <p>May they continue to guide and delight you.</p>
+                        <h2>🎉 Happy 30th Birthday Susan 🎉</h2>
+                        <p>Your inspiration brings joy to all you meet — and as any good story (or life) reminds us, a little dough never hurts.</p>
+                        <p>To celebrate your 30th, I’m giving you a <strong>$5,000 gift</strong> — an investment in your future and your passions.</p>
+                        <p>We’ll talk when we’re together at the end of June, but know this: it is yours, and I am so proud of you.</p>
+                        <p>With all my love,<br>Dad</p>
+                    `;
                     resultDiv.classList.add('show');
-                }, 100);
+                }, 1000); // 1 second delay
             } else {
                 resultDiv.innerHTML = `<p>Hmm... not quite. Reflect and try again.</p>`;
-                resultDiv.classList.add('show'); // Still fade in the "try again" message
+                resultDiv.classList.add('show');
             }
         }
     </script>
