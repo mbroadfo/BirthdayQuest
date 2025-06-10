@@ -3,7 +3,7 @@ name: Deploy BirthdayQuest to S3
 on:
   push:
     branches:
-      - main  # Adjust if your repo uses a different branch name
+      - master
   workflow_dispatch:
 
 jobs:
