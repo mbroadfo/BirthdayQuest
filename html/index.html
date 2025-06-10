@@ -64,8 +64,8 @@
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
-            white-space: pre-wrap; /* important for typewriter spacing */
-            border-right: 3px solid #004400; /* blinking cursor */
+            white-space: pre-wrap;
+            border-right: 3px solid #004400;
             animation: blink-cursor 0.7s steps(40) infinite normal;
             opacity: 1;
         }
@@ -93,7 +93,17 @@
     <div id="result"></div>
     <div id="finalMessage"></div>
 
+    <!-- SHA-256 library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
     <script>
+        // Precomputed SHA-256 hashes of correct words (lowercase)
+        const expectedHashes = [
+            "2f5d828d24986c580d091431938a5a1762e186b9403a399b39e22e82d4045c12",
+            "0dc9e2a764de84f3e1b5ff46d79b32cbe63480be0c3c96185f1241a6c67a27e9",
+            "dfd7a9a6fc0f9a131b46ef899d136c17b7f9bc61d35ac86f8589f30f3598e9db"
+        ];
+
         function checkCombination() {
             const word1 = document.getElementById('word1').value.trim().toLowerCase();
             const word2 = document.getElementById('word2').value.trim().toLowerCase();
@@ -104,12 +114,19 @@
 
             resultDiv.classList.remove('show');
             finalMessageDiv.innerHTML = '';
-            finalMessageDiv.style.borderRight = 'none'; // reset cursor until active
+            finalMessageDiv.style.borderRight = 'none';
 
             resultDiv.innerHTML = '';
 
-            if (word1 === "inspiration" && word2 === "stories" && word3 === "happy") {
-                // Show Portal unlocked message with button
+            const inputHashes = [
+                CryptoJS.SHA256(word1).toString(),
+                CryptoJS.SHA256(word2).toString(),
+                CryptoJS.SHA256(word3).toString()
+            ];
+
+            const isMatch = inputHashes.every((hash, index) => hash === expectedHashes[index]);
+
+            if (isMatch) {
                 setTimeout(() => {
                     resultDiv.innerHTML = `
                         <h2>✨ The Portal is Unlocked ✨</h2>
@@ -128,12 +145,10 @@
             const resultDiv = document.getElementById('result');
             const finalMessageDiv = document.getElementById('finalMessage');
 
-            // Hide the intermediate message
             resultDiv.classList.remove('show');
             setTimeout(() => {
                 resultDiv.innerHTML = '';
 
-                // Now type out the full message
                 const message = `
 🎉 Happy 30th Birthday Susan 🎉
 
@@ -154,7 +169,7 @@ Dad
         function typeWriterEffect(element, text, speed) {
             let i = 0;
             element.innerHTML = '';
-            element.style.borderRight = '3px solid #004400'; // show cursor
+            element.style.borderRight = '3px solid #004400';
 
             function type() {
                 if (i < text.length) {
@@ -162,7 +177,7 @@ Dad
                     i++;
                     setTimeout(type, speed);
                 } else {
-                    element.style.borderRight = 'none'; // remove cursor at end
+                    element.style.borderRight = 'none';
                 }
             }
 
