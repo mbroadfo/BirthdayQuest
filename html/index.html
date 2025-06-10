@@ -44,7 +44,28 @@
             margin-top: 2em;
             font-size: 1.2em;
             color: #004400;
+            line-height: 1.6em;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0;
+            transition: opacity 2s ease-in;
         }
+
+        #result.show {
+            opacity: 1;
+        }
+
+        #result h2 {
+            font-size: 1.8em;
+            margin-bottom: 0.5em;
+        }
+
+        #result p {
+            font-size: 1.2em;
+            margin-bottom: 1em;
+        }
+
     </style>
 </head>
 <body>
@@ -69,8 +90,11 @@
             const word2 = document.getElementById('word2').value.trim().toLowerCase();
             const word3 = document.getElementById('word3').value.trim().toLowerCase();
 
+            const resultDiv = document.getElementById('result');
+            resultDiv.classList.remove('show'); // Reset animation
+
             if (word1 === "inspiration" && word2 === "stories" && word3 === "happy") {
-                document.getElementById('result').innerHTML = `
+                resultDiv.innerHTML = `
                     <h2>✨ The Portal Opens ✨</h2>
                     <p>Your Words of Power have been found:</p>
                     <p><strong>Inspiration • Stories • Happy</strong></p>
@@ -81,8 +105,13 @@
                     <p>We’ll talk when we’re together at the end of June, but know this: it is yours, and I am so proud of you.</p>
                     <p>With all my love,<br>Dad</p>
                 `;
+                // Trigger fade-in after small delay to allow DOM update
+                setTimeout(() => {
+                    resultDiv.classList.add('show');
+                }, 100);
             } else {
-                document.getElementById('result').innerHTML = `<p>Hmm... not quite. Reflect and try again.</p>`;
+                resultDiv.innerHTML = `<p>Hmm... not quite. Reflect and try again.</p>`;
+                resultDiv.classList.add('show'); // Still fade in the "try again" message
             }
         }
     </script>
