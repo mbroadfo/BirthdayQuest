@@ -27,3 +27,6 @@ jobs:
 
         echo "Uploading index.html to s3://$BUCKET_NAME/index.html"
         aws s3 cp html/index.html s3://$BUCKET_NAME/index.html --content-type text/html
+
+        echo "Uploading favicon.ico to s3://$BUCKET_NAME/favicon.ico"
+        aws s3 cp html/favicon.ico s3://$BUCKET_NAME/favicon.ico --content-type image/x-icon
