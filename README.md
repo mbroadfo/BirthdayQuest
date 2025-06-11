@@ -17,6 +17,17 @@ Thus, this "Birthday Quest" was born:
 
 ## Technical Design
 
+### 📜 Solution Architecture
+This Birthday Quest Portal was created using a modern yet lightweight architecture — blending simple web technologies, cloud hosting, automation, and a bit of cryptographic fun.
+
+The solution was intentionally designed to:
+ - Be fully self-hosted, requiring no server or backend,
+ - Offer a magic-like experience while still being technically sound,
+ - Allow rapid iteration using familiar DevOps tooling.
+
+Here is the architecture that powers the Portal:
+![alt text](image.png)
+
 ### Architecture
 
 - **Static S3 Website** hosted on AWS
