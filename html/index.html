@@ -97,6 +97,23 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 
     <script>
+        // Date gating logic — unlocks at 8:30pm AEST → 10:30 UTC → 3:30am PDT
+        const now = new Date();
+        const unlockDate = new Date(Date.UTC(2025, 5, 12, 10, 30, 0)); 
+
+        if (now < unlockDate) {
+            // Override the whole body with locked message
+            document.body.innerHTML = `
+                <h1 style="font-family: Georgia, serif; text-align: center; margin-top: 3em;">🔒 Too Soon, Adventurer 🔒</h1>
+                <p style="font-family: Georgia, serif; text-align: center; font-size: 1.2em; max-width: 600px; margin: 2em auto;">
+                    You have found the Portal... but all in its time.<br><br>
+                    The Portal will open when the stars align — at <strong>8:30pm on June 12, 2025 — Australian Eastern Time</strong>, the hour of your birth.<br><br>
+                    Until then, no key will turn the lock, no spell will break the seal.<br><br>
+                    Patience, and return when the stars align. 🕮✨
+                </p>
+            `;
+        }
+
         // Precomputed SHA-256 hashes of correct words (lowercase)
         const expectedHashes = [
             "be2c9ce17278c9311853dd3769e394cde004258b23e1ed82a9a18c0fe8302319",
@@ -160,7 +177,15 @@ We’ll talk when we’re together at the end of June, but know this: it is your
 
 With all my love,
 Dad
-                `;
+
+---
+
+P.S. If you’re curious about how this Portal works — and the fun we had creating it — you can peek behind the curtain here:
+
+👉 https://github.com/mbroadfo/BirthdayQuest/blob/master/README.md
+
+🕮✨
+`;
 
                 typeWriterEffect(finalMessageDiv, message, 40);
             }, 500);

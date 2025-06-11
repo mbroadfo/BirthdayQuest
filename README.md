@@ -78,11 +78,15 @@ It is a personal gift from Dad to Susan — crafted with ❤️.
 
 ---
 
-## Future Enhancements (optional)
+## June 2025 Updates — Final Birthday Quest Portal Behavior
 
-- Add optional **sound effect** during typewriter animation
-- Add **portal visual transition**
-- Add **small audit log** (if needed) using CloudFront + Lambda@Edge (advanced)
+- The Portal is now locked until **8:30pm AEST, June 12, 2025** — Susan's exact birth hour, in honor of her heritage.
+- The lock uses UTC-based precision (`Date.UTC(2025, 5, 12, 10, 30, 0)`), ensuring perfect behavior across time zones.
+- The teasing message explicitly displays **Australian Eastern Time** — reinforcing the theme of the Quest and her birth story.
+- Once the Portal is unlocked and the gift message is revealed, a note will be displayed with a link to this README so Susan can see the technical artistry behind the experience.
+
+**Creator's Note:**  
+_This Quest was designed with great care to honor Susan’s life, passions, and heritage — and to create a moment of joy and magic on her 30th birthday._
 
 ---
 
