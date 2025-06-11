@@ -10,6 +10,19 @@
             background-color: #fdfaf5;
             color: #333;
             text-align: center;
+            margin: 0;
+        }
+
+        body.teaser-active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 0;
+        }
+
+        body.portal-active {
+            display: block;
             padding: 2em;
             max-width: 800px;
             margin: auto;
@@ -75,19 +88,6 @@
             to { border-right-color: transparent; }
         }
 
-        body {
-            font-family: Georgia, serif;
-            background-color: #fdfaf5;
-            color: #333;
-            text-align: center;
-            padding: 0; /* remove extra body padding */
-            margin: 0;  /* remove browser margin */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh; /* force vertically centered on viewport */
-        }
-
         .container {
             background-color: #f9f6f1;
             border: 2px solid #ccc;
@@ -95,15 +95,8 @@
             padding: 2em;
             max-width: 700px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            margin: 2em; /* small margin around */
-
-            display: flex;
-            flex-direction: column;
-            justify-content: center; /* center vertically */
-            align-items: center;     /* center horizontally */
-            min-height: 80vh; /* enough height to feel centered, but not too large */
+            margin: 2em;
         }
-
     </style>
 </head>
 <body>
@@ -129,10 +122,11 @@
     <script>
         // Date gating logic — unlocks at 8:30pm AEST → 10:30 UTC → 3:30am PDT
         const now = new Date();
-        const unlockDate = new Date(Date.UTC(2024, 5, 12, 10, 30, 0)); 
+        const unlockDate = new Date(Date.UTC(2025, 5, 12, 10, 30, 0)); 
 
         if (now < unlockDate) {
-            // Override the whole body with locked message
+            document.body.classList.add("teaser-active");
+
             document.body.innerHTML = `
                 <div class="container">
                     <h1>🕮 The Birthday Quest 🕮</h1>
@@ -141,38 +135,41 @@
             `;
 
             const teaserMessage = `
-            Not all stories are bound in books.
+Not all stories are bound in books.
 
-            Some... are lived.
+Some... are lived.
 
-            On this day — thirty years since your tale began — a new chapter awaits.
+On this day — thirty years since your tale began — a new chapter awaits.
 
-            ✨✨✨
+✨✨✨
 
-            ---
+---
 
-            The Quest
+The Quest
 
-            You will seek the Words of Power.
+You will seek the Words of Power.
 
-            You will unlock the Portal.
+You will unlock the Portal.
 
-            But not yet...
+But not yet...
 
-            The Portal stirs in its sleep.
-            It will awaken at 8:30pm on June 12, 2025 — Australian Eastern Time, the hour of your birth.
+The Portal stirs in its sleep.
+It will awaken at 8:30pm on June 12, 2025 — Australian Eastern Time, the hour of your birth.
 
-            Until then, its secrets remain sealed. 🕮✨
+Until then, its secrets remain sealed. 🕮✨
 
-            When the time is right:
-            Visit https://tinyurl.com/2rk4jpmu
+When the time is right:
+Visit https://tinyurl.com/2rk4jpmu
 
-            With love,
-            Dad
-            `;
+With love,
+Dad
+`;
 
             typeWriterEffect(document.getElementById('teaserScroll'), teaserMessage, 30);
-            }
+
+        } else {
+            document.body.classList.add("portal-active");
+        }
 
         // Precomputed SHA-256 hashes of correct words (lowercase)
         const expectedHashes = [
