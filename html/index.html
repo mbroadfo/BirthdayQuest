@@ -74,6 +74,29 @@
             from { border-right-color: #004400; }
             to { border-right-color: transparent; }
         }
+
+        body {
+            font-family: Georgia, serif;
+            background-color: #fdfaf5;
+            color: #333;
+            text-align: center;
+            padding: 0; /* remove extra body padding */
+            margin: 0;  /* remove browser margin */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* force vertically centered on viewport */
+        }
+
+        .container {
+            background-color: #f9f6f1;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            padding: 2em;
+            max-width: 700px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin: 2em; /* small margin around */
+        }
     </style>
 </head>
 <body>
