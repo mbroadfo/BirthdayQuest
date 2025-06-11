@@ -122,7 +122,7 @@
     <script>
         // Date gating logic — unlocks at 8:30pm AEST → 10:30 UTC → 3:30am PDT
         const now = new Date();
-        const unlockDate = new Date(Date.UTC(2025, 5, 12, 10, 30, 0)); 
+        const unlockDate = new Date(Date.UTC(2024, 5, 12, 10, 30, 0)); 
 
         if (now < unlockDate) {
             document.body.classList.add("teaser-active");
