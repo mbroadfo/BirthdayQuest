@@ -63,12 +63,6 @@ Here is the architecture that powers the Portal:
 
 ## Words of Power
 
-The quest currently uses:
-
-1. Inspiration
-2. Stories
-3. Happy
-
 Hashes are precomputed using SHA-256 and stored securely in JS.  
 Words are lowercased and trimmed at entry.
 
